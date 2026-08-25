@@ -29,7 +29,7 @@ n_envs = 4
 Χρησιμοποιούμε επίσης και την βιβλιοθήκη VecNormalize της StableBaselines η οποία κανονικοποιεί τα observations και τα rewards κατά την διάρκεια της εκπαίδευσης. Αυτό χρησιμοποιείται γιατί στα περιβάλλοντα του MetaWorld τα observations μπορεί να περιλαμβάνουν τιμές με διαφορετικές κλίμακες.
 Κατα την αξιολόγηση, τα στατιστικά του VecNormalize φορτώνονται ξανά και παγώνουν έτσι ώστε να μην αλλάζουν κατά την διάρκεια του evaluation. Έτσι το μοντέλο αξιολογείται με τα ίδια normalization statistics που χρησιμοποιήθηκαν κατά την εκπαίδευση.
 
-### PPO Configurations
+## PPO Configurations
 Χρησιμοποιήθηκαν 5 PPO Configurations με το εξής σκεπτικό
 
 | Config | Λογική |
@@ -39,6 +39,55 @@ n_envs = 4
 |config_C|Χρησιμοποιεί μικρότερο n_steps, άρα μικρότερο rollout size και πιο συχνά updates. Εξετάζει αν οι συχνότερες ενημερώσεις βοηθούν ή αποσταθεροποιούν τη μάθηση.|
 |config_D|Προσθέτει μικρό entropy coefficient ώστε το policy να έχει περισσότερη εξερεύνηση κατά την εκπαίδευση.|
 |config_E|Παραλλαγή πιο κοντά στο learning rate που αναφέρεται στο Meta-World paper, με learning_rate = 5e-4. Χρησιμοποιείται για να εξεταστεί αν πιο επιθετικές ενημερώσεις βελτιώνουν την ταχύτητα μάθησης ή προκαλούν αστάθεια.|
+### Hyperparameters
+| Hyperparameter | `config_A` | `config_B` | `config_C` | `config_D` | `config_E` |
+|---|---:|---:|---:|---:|---:|
+| `learning_rate` | `3e-4` | `1e-4` | `3e-4` | `2.5e-4` | `5e-4` |
+| `n_steps` | `1024` | `1024` | `512` | `1024` | `1024` |
+| `batch_size` | `256` | `512` | `256` | `256` | `256` |
+| `n_epochs` | `10` | `15` | `10` | `10` | `10` |
+| `gamma` | `0.99` | `0.995` | `0.99` | `0.99` | `0.99` |
+| `gae_lambda` | `0.95` | `0.95` | `0.95` | `0.95` | `0.95` |
+| `clip_range` | `0.20` | `0.15` | `0.20` | `0.20` | `0.20` |
+| `ent_coef` | `0.0` | `0.0` | `0.0` | `0.002` | `0.0` |
+| `vf_coef` | `0.5` | `0.7` | `0.5` | `0.5` | `0.5` |
+| `max_grad_norm` | `0.5` | `0.5` | `0.5` | `0.5` | `0.5` |
+
+### Default παραμέτροι του PPO που δεν έχουν αλλαχθεί
+| PPO parameter | SB3 default value |  Σύντομη περιγραφή |
+|---|-----|---|
+| `clip_range_vf` | `None`  | Δεν εφαρμόζεται ξεχωριστό clipping στο value function. |
+| `normalize_advantage` | `True`  | Τα advantage estimates κανονικοποιούνται πριν από το PPO update. |
+| `use_sde` | `False` | Δεν χρησιμοποιείται generalized State Dependent Exploration. |
+| `sde_sample_freq` | `-1`  | Συχνότητα ανανέωσης του gSDE noise. Δεν έχει πρακτική επίδραση αφού `use_sde=False`. |
+| `rollout_buffer_class` | `None`  | Χρησιμοποιείται το default rollout buffer του SB3. |
+| `rollout_buffer_kwargs` | `None` | Δεν δίνονται επιπλέον arguments στο rollout buffer. |
+| `target_kl` | `None`  | Δεν υπάρχει early stopping με βάση KL divergence. |
+| `stats_window_size` | `100`  | Τα training logs υπολογίζονται ως μέσος όρος σε παράθυρο 100 episodes. |
+| `policy_kwargs` | `None`  | Χρησιμοποιείται η default αρχιτεκτονική του `MlpPolicy`. |
+| `_init_setup_model` | `True`  | Το μοντέλο αρχικοποιείται κανονικά κατά τη δημιουργία του PPO object. |
+
+*Η default αρχιτεκτονική του MlpPolicy είναι :
+```python
+net_arch = dict(
+    pi=[64, 64],
+    vf=[64, 64],
+)
+```
+Δηλαδή
+| Branch | Ρόλος                  | Default hidden layers |
+| ------ | ---------------------- | --------------------- |
+| `pi`   | Actor / policy network | `[64, 64]` + tanh           |
+| `vf`   | Critic / value network | `[64, 64]` + tanh           |
+
+*rollout_buffer ανα config :
+| Config | `n_steps` | `n_envs` | Rollout buffer size (`n_steps × n_envs`) | `batch_size` | Mini-batches ανά epoch | `n_epochs` | PPO mini-batch updates ανά rollout |
+|---|---|---|---|---|---|---|---|
+| `config_A` | `1024` | `4` | `4096 transitions` | `256` | `4096 / 256 = 16` | `10` | `16 × 10 = 160` |
+| `config_B` | `1024` | `4` | `4096 transitions` | `512` | `4096 / 512 = 8` | `15` | `8 × 15 = 120` |
+| `config_C` | `512` | `4` | `2048 transitions` | `256` | `2048 / 256 = 8` | `10` | `8 × 10 = 80` |
+| `config_D` | `1024` | `4` | `4096 transitions` | `256` | `4096 / 256 = 16` | `10` | `16 × 10 = 160` |
+| `config_E` | `1024` | `4` | `4096 transitions` | `256` | `4096 / 256 = 16` | `10` | `16 × 10 = 160` |
 
 ### Checkpoints
 Κατά την διάρκεια της εκπαίδευσης αποθηκεύονται checkpoints σε τακτά χρονικά διαστήματα.Αυτό επιτρέπει την ανάλυση της πορείας την μάθησης του πράκτορα εκτός της τελικής του απόδοσης.Με αυτό τον τρόπο καταλαβαίνουμε:
