@@ -67,7 +67,7 @@ n_envs = 4
 | `policy_kwargs` | `None`  | Χρησιμοποιείται η default αρχιτεκτονική του `MlpPolicy`. |
 | `_init_setup_model` | `True`  | Το μοντέλο αρχικοποιείται κανονικά κατά τη δημιουργία του PPO object. |
 
-*Η default αρχιτεκτονική του MlpPolicy είναι :
+### Η default αρχιτεκτονική του MlpPolicy είναι :
 ```python
 net_arch = dict(
     pi=[64, 64],
@@ -80,7 +80,7 @@ net_arch = dict(
 | `pi`   | Actor / policy network | `[64, 64]` + tanh           |
 | `vf`   | Critic / value network | `[64, 64]` + tanh           |
 
-*rollout_buffer ανα config :
+### rollout_buffer ανα config :
 | Config | `n_steps` | `n_envs` | Rollout buffer size (`n_steps × n_envs`) | `batch_size` | Mini-batches ανά epoch | `n_epochs` | PPO mini-batch updates ανά rollout |
 |---|---|---|---|---|---|---|---|
 | `config_A` | `1024` | `4` | `4096 transitions` | `256` | `4096 / 256 = 16` | `10` | `16 × 10 = 160` |
