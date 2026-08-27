@@ -141,3 +141,5 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 Η καμπύλη του test success rate δείχνει ότι το task λύνεται πριν από το τελικό checkpoint. Αυτό είναι σημαντικό, γιατί δείχνει ότι η τελική απόδοση δεν είναι πάντα αρκετή για να περιγράψει πλήρως τη συμπεριφορά του μοντέλου. Για παράδειγμα, κάποιο configuration μπορεί να φτάσει σε τέλεια απόδοση νωρίτερα και να παρουσιάσει μικρή πτώση στο final checkpoint.
 
+#### Train Success Rate Across Checkpoint
+![Button-Press Train Success Curve](button_press_results/figures/button_press_train_success_rate_learning_curve.png)
