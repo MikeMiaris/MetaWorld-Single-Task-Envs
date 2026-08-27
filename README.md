@@ -110,3 +110,34 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 | `episodes` | Πλήθος episodes που αξιολογήθηκαν                          |
 
 Το βασικό metric που χρησιμοπιείται για την σύγκριση των μοντέλων είναι το succes rate. Το avg_return καταγράφεται επίσης αλλά θεωρείται δευτερεύον metric καθώς το μοντέλο μπορεί να συγκεντρώνει reward χωρίς να πετυχαίνει το task.
+
+## Results
+
+### Button-Press-v3
+
+Το `button-press-v3` είναι το πιο απλό single-task περιβάλλον από τα τέσσερα που εξετάστηκαν. Ο στόχος του πράκτορα είναι να ελέγξει τον robotic arm ώστε να πατήσει ένα κουμπί. Για αυτόν τον λόγο, το συγκεκριμένο περιβάλλον λειτουργεί και ως βασικό sanity check για το training και evaluation pipeline του PPO.
+
+#### Final Test Success Rate
+
+Στο τελικό checkpoint των `500,000` timesteps, τα περισσότερα PPO configurations πέτυχαν πολύ υψηλό test success rate. Τα `config_A` και `config_D` έφτασαν σε τέλεια απόδοση, ενώ τα `config_C` και `config_E` είχαν επίσης πολύ υψηλή επίδοση. Το `config_B` είχε χαμηλότερη τελική απόδοση σε σχέση με τα υπόλοιπα configurations.
+
+![Button-Press Final Test Success](results/figures/button_press/final_test_success_by_config.png)
+
+| Config | Final mean test success rate |
+|---|---:|
+| `config_A` | `1.00` |
+| `config_D` | `1.00` |
+| `config_C` | `0.96` |
+| `config_E` | `0.96` |
+| `config_B` | `0.84` |
+
+Τα αποτελέσματα δείχνουν ότι το `button-press-v3` μπορεί να λυθεί αξιόπιστα από διαφορετικές PPO παραμετροποιήσεις. Επομένως, οι διαφορές μεταξύ των configurations δεν είναι τόσο έντονες όσο σε δυσκολότερα περιβάλλοντα.
+
+#### Test Success Rate Across Checkpoints
+
+Η checkpoint-based αξιολόγηση δείχνει ότι όλα τα configurations μαθαίνουν το task σχετικά γρήγορα. Τα περισσότερα configurations φτάνουν σε πολύ υψηλό ή τέλειο test success rate αρκετά νωρίς κατά τη διάρκεια της εκπαίδευσης.
+
+![Button-Press Test Success Curve](button_pressresults/figures/button_press_test_success_rate_learning_curve.png)
+
+Η καμπύλη του test success rate δείχνει ότι το task λύνεται πριν από το τελικό checkpoint. Αυτό είναι σημαντικό, γιατί δείχνει ότι η τελική απόδοση δεν είναι πάντα αρκετή για να περιγράψει πλήρως τη συμπεριφορά του μοντέλου. Για παράδειγμα, κάποιο configuration μπορεί να φτάσει σε τέλεια απόδοση νωρίτερα και να παρουσιάσει μικρή πτώση στο final checkpoint.
+
