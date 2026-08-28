@@ -140,3 +140,24 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 <img src="push_results/figures/push_test_success_rate_by_config.png" width="600">
 
+### Pick Place
+
+#### Train set Learning Curve
+
+<img src="pick_place_results/figures/pick_place_train_success_rate_by_config.png" width="600">
+
+### Test Set Learning Curve
+
+<img src="push_results/figures/pick_place_test_success_rate_by_config.png" width="600">
+
+
+### Basketball
+
+#### Train set Learning Curve
+
+<img src="basketball_results/figures/basketball_train_success_rate_by_config.png" width="600">
+
+### Test Set Learning Curve
+
+<img src="push_results/figures/basketball_test_success_rate_by_config.png" width="600">
+
