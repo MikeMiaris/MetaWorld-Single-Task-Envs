@@ -121,7 +121,7 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 Στο τελικό checkpoint των `500,000` timesteps, τα περισσότερα PPO configurations πέτυχαν πολύ υψηλό test success rate. Τα `config_A` και `config_D` έφτασαν σε τέλεια απόδοση, ενώ τα `config_C` και `config_E` είχαν επίσης πολύ υψηλή επίδοση. Το `config_B` είχε χαμηλότερη τελική απόδοση σε σχέση με τα υπόλοιπα configurations.
 
-![Button-Press Final Test Success](results/figures/button_press/final_test_success_by_config.png)
+<img src="results/figures/button_press/test_success_learning_curve_1.png" width="850">
 
 | Config | Final mean test success rate |
 |---|---:|
