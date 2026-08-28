@@ -129,3 +129,14 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 #### Train Success Rate Across Checkpoint
 <img src="button_press_results/figures/button_press_train_success_rate_learning_curve_1.png" width="600">
+
+### Push
+
+#### Train set Learning Curve
+
+<img src="push_results/figures/push_train_success_rate_by_config.png" width="600">
+
+### Test Set Learning Curve
+
+<img src="push_results/figures/push_test_success_rate_by_config.png" width="600">
+
