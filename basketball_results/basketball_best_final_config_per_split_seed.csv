@@ -1,0 +1,6 @@
+split_id,train_seed,config_name,group,success_rate,avg_return,avg_first_success_step,episodes
+0,11,config_A,test,1.0,241.6308173146318,80.4,5
+1,11,config_A,test,1.0,143.08515232997507,72.8,5
+2,11,config_A,test,1.0,582.470398292621,142.2,5
+3,11,config_B,test,0.8,109.68843974910078,54.0,5
+4,11,config_D,test,0.8,103.67297955989513,56.5,5
