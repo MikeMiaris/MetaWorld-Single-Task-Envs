@@ -146,7 +146,7 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 <img src="pick_place_results/figures/pick_place_train_success_rate_by_config.png" width="600">
 
-### Test Set Learning Curve
+#### Test Set Learning Curve
 
 <img src="pick_place_results/figures/pick_place_test_success_rate_by_config.png" width="600">
 
@@ -157,7 +157,7 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 <img src="basketball_results/figures/basketball_train_success_rate_by_config.png" width="600">
 
-### Test Set Learning Curve
+#### Test Set Learning Curve
 
 <img src="basketball_results/figures/basketball_test_success_rate_by_config.png" width="600">
 
