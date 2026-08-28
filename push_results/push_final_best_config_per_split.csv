@@ -1,0 +1,6 @@
+split_id,final_checkpoint_step,best_config,best_test_success_rate,best_test_avg_return
+0,5000000,config_A,1.0,258.5323901171526
+1,5000000,config_A,1.0,314.54095542233307
+2,5000000,config_B,1.0,157.1483567576252
+3,5000000,config_B,1.0,190.60376024876376
+4,5000000,config_B,1.0,284.6630903694757
