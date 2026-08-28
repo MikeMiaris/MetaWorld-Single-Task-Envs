@@ -123,7 +123,7 @@ H αξιολόγηση γίνεται ξεχωριστά για τα training κ
 
 Η checkpoint-based αξιολόγηση δείχνει ότι όλα τα configurations μαθαίνουν το task σχετικά γρήγορα. Τα περισσότερα configurations φτάνουν σε πολύ υψηλό ή τέλειο test success rate αρκετά νωρίς κατά τη διάρκεια της εκπαίδευσης.
 
-<img src="button_press_results/figures/test_success_learning_curve_1.png" width="600">
+<img src="button_press_results/figures/button_press_train_success_rate_learning_curve_1.png" width="600">
 
 Η καμπύλη του test success rate δείχνει ότι το task λύνεται πριν από το τελικό checkpoint. Αυτό είναι σημαντικό, γιατί δείχνει ότι η τελική απόδοση δεν είναι πάντα αρκετή για να περιγράψει πλήρως τη συμπεριφορά του μοντέλου. Για παράδειγμα, κάποιο configuration μπορεί να φτάσει σε τέλεια απόδοση νωρίτερα και να παρουσιάσει μικρή πτώση στο final checkpoint.
 
