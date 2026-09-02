@@ -2,53 +2,6 @@
 
 Παρακάτω παρουσιάζονται τα αποτελέσματα και οι επιδόσεις του αλγορίθμου Proximal Policy Optimization (PPO), ο οποίος χρησιμοποιήθηκε για την εκπαίδευση πρακτόρων σε τέσσερα διαφορετικά single-task περιβάλλοντα του Meta-World.
 
-## Περιεχόμενα
-
-- [PPO Configurations](#ppo-configurations)
-  - [`config_1` — Balanced custom-MT baseline](#config_1--balanced-custom-mt-baseline)
-  - [`config_2` — Conservative / stable configuration](#config_2--conservative--stable-configuration)
-  - [`config_3` — Exploration-oriented / aggressive configuration](#config_3--exploration-oriented--aggressive-configuration)
-  - [Γιατί χρησιμοποιείται μεγαλύτερο network](#γιατί-χρησιμοποιείται-μεγαλύτερο-network)
-
-- [Results](#results)
-  - [Πώς διαβάζονται τα αποτελέσματα](#πώς-διαβάζονται-τα-αποτελέσματα)
-  - [Overall best success pivot](#overall-best-success-pivot)
-
-- [Basketball + Pick-Place](#basketball--pick-place)
-  - [Best success pivot](#best-success-pivot)
-  - [Best checkpoint per config and environment](#best-checkpoint-per-config-and-environment)
-  - [First checkpoint that reached 1.00 success](#first-checkpoint-that-reached-100-success)
-  - [Final model results](#final-model-results)
-  - [Learning curves](#learning-curves)
-  - [Συμπέρασμα](#συμπέρασμα)
-
-- [Basketball + Push](#basketball--push)
-  - [Best success pivot](#best-success-pivot-1)
-  - [Best checkpoint per config and environment](#best-checkpoint-per-config-and-environment-1)
-  - [First checkpoint that reached 1.00 success](#first-checkpoint-that-reached-100-success-1)
-  - [Final model results](#final-model-results-1)
-  - [Learning curves](#learning-curves-1)
-  - [Συμπεράσματα](#συμπεράσματα)
-
-- [Pick-Place + Push](#pick-place--push)
-  - [Best success pivot](#best-success-pivot-2)
-  - [Best checkpoint per config and environment](#best-checkpoint-per-config-and-environment-2)
-  - [First checkpoint that reached 1.00 success](#first-checkpoint-that-reached-100-success-2)
-  - [Final model results](#final-model-results-2)
-  - [Learning curves](#learning-curves-2)
-  - [Συμπέρασμα](#συμπέρασμα-1)
-
-- [How to Run New Experiments](#how-to-run-new-experiments)
-  - [Train one config](#train-one-config)
-  - [Train all configs manually](#train-all-configs-manually)
-  - [Evaluate all configs](#evaluate-all-configs)
-  - [Evaluate only one config](#evaluate-only-one-config)
-  - [Evaluate with more seeds](#evaluate-with-more-seeds)
-  - [Evaluate only selected checkpoints](#evaluate-only-selected-checkpoints)
-
-- [How to Add a New Custom-MT Pair](#how-to-add-a-new-custom-mt-pair)
-
-
 ## Περιβάλλοντα
 
 - **button-press** - Πάτημα ενός κουμπιού
